@@ -6,7 +6,7 @@ Inspiration for this project was taken from [this project](https://eugenkiss.git
 
 - [x] Counter
 - [x] Temperature Converter
-- [ ] Flight Booker
+- [x] Flight Booker
 - [ ] Timer
 - [ ] CRUD
 - [ ] Circle Drawer
