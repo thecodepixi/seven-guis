@@ -5,12 +5,11 @@ body {
 }
 
 #guis {
-  margin: 2em;
+  margin: auto;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  width: 90vw;
 }
 
 h1 {
@@ -19,9 +18,9 @@ h1 {
 
 .box {
   height: max-content;
-  min-width: 15vw;
+  min-width: 50vw;
   padding: 1em;
-  margin: 2em;
+  margin: 2em auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,4 +58,9 @@ button {
 
 #flight-booker input {
   margin-bottom: 5px;
+}
+
+.error-field {
+  border: solid 1px red;
+  background-color: lightcoral;
 }

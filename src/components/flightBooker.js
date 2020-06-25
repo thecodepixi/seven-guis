@@ -4,7 +4,7 @@ const FlightBooker = () => {
   const [flightType, setFlightType] = useState('one-way');
   const [flightOut, setFlightOut] = useState('');
   const [flightBack, setFlightBack] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({ flightOut: false, returnFlight: false });
   const flightOutRef = useRef();
   const returnFlightRef = useRef();
 
@@ -18,9 +18,23 @@ const FlightBooker = () => {
     }
   };
 
+  const dateRegExp = /^((0){1}[1-9]{1}|(1){1}[12]{1})-(([0-2]{1}[0-9]{1})|3[01])-20[\d]{2}$/g;
+
   const changeFlightOut = (e) => {
     // use regex to match approved date format of MM-DD-YYYY
-    // if it does not match, use 'flightOut' ref to highlight input as having an error, and setError to true
+    if (dateRegExp.test(e.target.value)) {
+      setError((prev) => ({
+        ...prev,
+        flightOut: false,
+      }));
+      setFlightOut(e.target.value);
+    } else {
+      // if it does not match, use 'flightOut' ref to highlight input as having an error, and setError to true
+      setError((prev) => ({
+        ...prev,
+        flightOut: true,
+      }));
+    }
   };
 
   const changeReturnFlight = (e) => {
@@ -50,6 +64,8 @@ const FlightBooker = () => {
           id='flight-out'
           placeholder='06-24-2020'
           ref={flightOutRef}
+          onChange={changeFlightOut}
+          className={error.flightOut ? 'error-field' : null}
         />
         <input
           type='text'
