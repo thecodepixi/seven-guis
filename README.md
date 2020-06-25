@@ -4,10 +4,10 @@ Inspiration for this project was taken from [this project](https://eugenkiss.git
 
 ## The 7 GUIs are:
 
-[ x ] Counter
-[ x ] Temperature Converter
-[ ] Flight Booker
-[ ] Timer
-[ ] CRUD
-[ ] Circle Drawer
-[ ] Cells
+- [x] Counter
+- [x] Temperature Converter
+- [ ] Flight Booker
+- [ ] Timer
+- [ ] CRUD
+- [ ] Circle Drawer
+- [ ] Cells
