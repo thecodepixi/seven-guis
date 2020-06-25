@@ -3,6 +3,7 @@ import './App.css';
 import Counter from './components/counter';
 import TempConverter from './components/tempConverter';
 import FlightBooker from './components/flightBooker';
+import Timer from './components/timer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Counter />
         <TempConverter />
         <FlightBooker />
+        <Timer />
       </div>
     </div>
   );
