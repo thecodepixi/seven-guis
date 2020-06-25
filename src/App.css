@@ -46,3 +46,17 @@ button {
 #count {
   font-size: 2em;
 }
+
+.temp {
+  text-align: right;
+  width: 5em;
+}
+
+#flight-booker {
+  display: flex;
+  flex-direction: column;
+}
+
+#flight-booker input {
+  margin-bottom: 5px;
+}

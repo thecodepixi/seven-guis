@@ -39,10 +39,16 @@ const TempConverter = () => {
         <input
           type='text'
           value={fahrenheit}
+          className='temp'
           onChange={handleFahrenheitChange}
         />
         <label htmlFor='fahrenheit'> Fahrenheit = </label>
-        <input type='text' value={celcius} onChange={handleCelciusChange} />
+        <input
+          type='text'
+          value={celcius}
+          className='temp'
+          onChange={handleCelciusChange}
+        />
         <label htmlFor='celcius'> Celcius</label>
       </p>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Counter from './components/counter';
 import TempConverter from './components/tempConverter';
+import FlightBooker from './components/flightBooker';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div id='guis'>
         <Counter />
         <TempConverter />
+        <FlightBooker />
       </div>
     </div>
   );
