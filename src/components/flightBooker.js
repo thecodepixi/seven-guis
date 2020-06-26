@@ -5,7 +5,6 @@ const FlightBooker = () => {
   const [flightOut, setFlightOut] = useState('');
   const [flightBack, setFlightBack] = useState('');
   const [error, setError] = useState({ flightOut: false, flightBack: false });
-  const flightOutRef = useRef();
   const returnFlightRef = useRef();
 
   const changeFlightType = (e) => {
@@ -100,7 +99,6 @@ const FlightBooker = () => {
           type='text'
           id='flight-out'
           placeholder='06-24-2020'
-          ref={flightOutRef}
           onChange={changeFlightOut}
           className={error.flightOut ? 'error-field' : null}
           value={flightOut}
