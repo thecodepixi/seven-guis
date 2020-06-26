@@ -53,9 +53,9 @@ const CRUD = () => {
       <p className='box-heading'>CRUD</p>
       <div id='names-container'>
         <ul id='name-list'>
-          {names.map((person) => (
+          {names.map((person, idx) => (
             <li
-              key={person.lastName}
+              key={idx}
               onClick={() => selectPerson(person)}
               className={selectedName === person ? 'name-highlight' : null}
             >
