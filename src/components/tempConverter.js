@@ -4,11 +4,11 @@ const TempConverter = () => {
   const [fahrenheit, setFahrenheit] = useState('');
   const [celcius, setCelcius] = useState('');
 
-  const convertToC = (temp) => {
+  const convertToF = (temp) => {
     return (temp * (9 / 5) + 32).toFixed(1);
   };
 
-  const convertToF = (temp) => {
+  const convertToC = (temp) => {
     return ((temp - 32) * (5 / 9)).toFixed(1);
   };
 
@@ -17,7 +17,7 @@ const TempConverter = () => {
     if (e.target.value === '') {
       setFahrenheit('');
     } else {
-      let f = convertToC(e.target.value);
+      let f = convertToF(e.target.value);
       setFahrenheit(f);
     }
   };
@@ -27,7 +27,7 @@ const TempConverter = () => {
     if (e.target.value === '') {
       setCelcius('');
     } else {
-      let c = convertToF(e.target.value);
+      let c = convertToC(e.target.value);
       setCelcius(c);
     }
   };
