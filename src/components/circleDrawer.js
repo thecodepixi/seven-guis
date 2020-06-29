@@ -41,10 +41,8 @@ const CircleDrawer = () => {
   const undo = () => {
     if (!currentCircle) return;
     currentCircle.remove();
+    setRemovedCircles(removedCircles.concat(currentCircle));
     setCurrentCircle(previousCircles[previousCircles.length - 1]);
-    setRemovedCircles(
-      removedCircles.concat(previousCircles[previousCircles.length - 1])
-    );
     setPreviousCircles(previousCircles.slice(0, -1));
   };
 
