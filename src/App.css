@@ -144,4 +144,8 @@ progress::-moz-progress-bar {
   height: max-content;
   width: 200px;
   border: 1px solid black;
+  background-color: white;
+  box-shadow: 5px 5px 10px 5px #777;
+  border-radius: 1em;
+  text-align: center;
 }
