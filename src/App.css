@@ -120,6 +120,7 @@ progress::-moz-progress-bar {
   border: 1px solid black;
   height: 50vh;
   width: 75%;
+  overflow: hidden;
 }
 
 #circle-buttons {
@@ -139,7 +140,6 @@ progress::-moz-progress-bar {
 }
 
 #circle-adjustment {
-  z-index: 3;
   position: absolute;
   height: max-content;
   width: 200px;
