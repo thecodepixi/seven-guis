@@ -44,10 +44,9 @@ const CircleDrawer = () => {
       return;
     } else {
       e.stopPropagation();
+
       let x = e.pageX;
-      setCurrentX(x);
       let y = e.pageY;
-      setCurrentY(y);
 
       let circ = document.createElement('div');
       circ.className = 'circ';
@@ -56,6 +55,8 @@ const CircleDrawer = () => {
 
       circ.addEventListener('click', (e) => {
         e.stopPropagation();
+        setCurrentX(e.pageX);
+        setCurrentY(e.pageY);
         setShowModal(true);
         setCurrentCircle(circ);
       });
