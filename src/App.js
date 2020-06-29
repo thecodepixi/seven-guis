@@ -5,6 +5,7 @@ import TempConverter from './components/tempConverter';
 import FlightBooker from './components/flightBooker';
 import Timer from './components/timer';
 import CRUD from './components/CRUD';
+import CircleDrawer from './components/circleDrawer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <FlightBooker />
         <Timer />
         <CRUD />
+        <CircleDrawer />
       </div>
     </div>
   );

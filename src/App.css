@@ -115,3 +115,33 @@ progress::-moz-progress-bar {
 #name-filter-container {
   padding: 1em;
 }
+
+#circle-canvas {
+  border: 1px solid black;
+  height: 50vh;
+  width: 75%;
+}
+
+#circle-buttons {
+  padding-bottom: 1em;
+}
+
+#circle-buttons button {
+  margin: 0 0.5em;
+}
+
+.circ {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  position: absolute;
+}
+
+#circle-adjustment {
+  z-index: 3;
+  position: absolute;
+  height: max-content;
+  width: 200px;
+  border: 1px solid black;
+}
