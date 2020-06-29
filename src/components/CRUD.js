@@ -18,6 +18,7 @@ const CRUD = () => {
   const [firstName, setFirstName] = useState(names[0].firstName);
   const [lastName, setLastName] = useState(names[0].lastName);
   const [selectedName, setSelectedName] = useState(names[0]);
+  const [nameFilter, setNameFilter] = useState('');
 
   const createPerson = () => {
     if (firstName !== '' && lastName !== '') {
@@ -48,12 +49,32 @@ const CRUD = () => {
     setSelectedName(names[0]);
   };
 
+  const filterNames = () => {
+    return names.filter(
+      (name) =>
+        name.firstName.toLowerCase().includes(nameFilter.toLowerCase()) ||
+        name.lastName.toLowerCase().includes(nameFilter.toLowerCase())
+    );
+  };
+
+  const displayNames = nameFilter === '' ? names : filterNames();
+
   return (
     <div className='box'>
       <p className='box-heading'>CRUD</p>
+      <div id='name-filter-container'>
+        <label htmlFor='name-filter'>Filter Names: </label>
+        <input
+          name='name-filter'
+          id='name-filter'
+          type='text'
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
+        />
+      </div>
       <div id='names-container'>
         <ul id='name-list'>
-          {names.map((person, idx) => (
+          {displayNames.map((person, idx) => (
             <li
               key={idx}
               onClick={() => selectPerson(person)}
