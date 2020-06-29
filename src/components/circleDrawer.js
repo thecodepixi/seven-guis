@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import ReactDOM from 'react-dom';
 
 const SizeModal = React.forwardRef((props, modal) => {
   const [radius, setRadius] = useState(10);
@@ -31,8 +32,29 @@ const CircleDrawer = () => {
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
   const [currentCircle, setCurrentCircle] = useState(null);
+  const [previousCircles, setPreviousCircles] = useState([]);
+  const [removedCircles, setRemovedCircles] = useState([]);
+
   const canvas = useRef();
   const modal = useRef();
+
+  const undo = () => {
+    if (!currentCircle) return;
+    currentCircle.remove();
+    setCurrentCircle(previousCircles[previousCircles.length - 1]);
+    setRemovedCircles(
+      removedCircles.concat(previousCircles[previousCircles.length - 1])
+    );
+    setPreviousCircles(previousCircles.slice(0, -1));
+  };
+
+  const redo = () => {
+    if (!removedCircles) return;
+    let recentlyRemoved = removedCircles[removedCircles.length - 1];
+    // canvas.current.appendChild(replacementCircle);
+    // setCurrentCircle(replacementCircle);
+    // setRemovedCircles(removedCircles.slice(0, -1));
+  };
 
   const drawCircle = (e) => {
     if (showModal && modal.current.contains(e.target)) {
@@ -61,6 +83,10 @@ const CircleDrawer = () => {
         setCurrentCircle(circ);
       });
 
+      setPreviousCircles(previousCircles.concat(currentCircle));
+      setCurrentCircle(circ);
+      console.log('Current Circle:', currentCircle);
+      console.log('Previous Circles: ', previousCircles);
       canvas.current.appendChild(circ);
     }
   };
@@ -69,8 +95,8 @@ const CircleDrawer = () => {
     <div className='box'>
       <p className='box-heading'>Circle Drawer</p>
       <div id='circle-buttons'>
-        <button>Undo</button>
-        <button>Redo</button>
+        <button onClick={undo}>Undo</button>
+        <button onClick={redo}>Redo</button>
       </div>
       <div id='circle-canvas' ref={canvas} onClick={drawCircle}>
         {showModal ? (
