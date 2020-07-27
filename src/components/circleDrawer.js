@@ -68,7 +68,7 @@ const CircleDrawer = () => {
   };
 
   const drawCircle = (e) => {
-    // handle modal stuff
+    // handle modal clicking if modal is currently up
     if (showModal && modal.current.contains(e.target)) {
       return;
     }
@@ -79,6 +79,8 @@ const CircleDrawer = () => {
       // otherwise deal with creating a circle
       e.stopPropagation();
 
+      // get mouse click location relative to "client",
+      // which for some reason is #box and not #circle-canvas
       let x = e.pageX;
       let y = e.pageY;
 
@@ -119,6 +121,7 @@ const CircleDrawer = () => {
             ref={modal}
             coords={[currentX, currentY]}
             circle={selectedCircle}
+            canvas={canvas.current}
           />
         ) : null}
       </div>
