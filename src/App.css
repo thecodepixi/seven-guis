@@ -121,6 +121,7 @@ progress::-moz-progress-bar {
   border: 1px solid black;
   height: 50vh;
   width: 75%;
+  position: relative;
   overflow: hidden;
 }
 

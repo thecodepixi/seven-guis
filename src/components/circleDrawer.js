@@ -16,8 +16,8 @@ const SizeModal = React.forwardRef((props, modal) => {
       onClick={props.modalClicks}
       ref={modal}
       style={{
-        top: props.coords[1] + 10 + 'px',
-        left: props.coords[0] + 10 + 'px',
+        top: props.coords[1] + 'px',
+        left: props.coords[0] + 'px',
       }}
     >
       <p>Adjust Diameter</p>
@@ -81,18 +81,19 @@ const CircleDrawer = () => {
 
       // get mouse click location relative to "client",
       // which for some reason is #box and not #circle-canvas
-      let x = e.pageX;
-      let y = e.pageY;
+      let canvasBounds = canvas.current.getBoundingClientRect();
+      let x = e.clientX - canvasBounds.left;
+      let y = e.clientY - canvasBounds.top;
 
       let circ = document.createElement('div');
       circ.className = 'circ';
-      circ.style.left = x - 10 + 'px';
-      circ.style.top = y - 10 + 'px';
+      circ.style.left = x + 'px';
+      circ.style.top = y + 'px';
 
       circ.addEventListener('click', (e) => {
         e.stopPropagation();
-        setCurrentX(e.pageX);
-        setCurrentY(e.pageY);
+        setCurrentX(e.clientX - canvasBounds.left);
+        setCurrentY(e.clientY - canvasBounds.top);
         setShowModal(true);
         setSelectedCircle(circ);
       });
@@ -106,6 +107,7 @@ const CircleDrawer = () => {
         setRemovedCircles([]);
       }
       // make the created circle the current circle and append it to the canvas
+      circ.id = `circle-${previousCircles.length + 1}`;
       setCurrentCircle(circ);
       canvas.current.appendChild(circ);
     }
