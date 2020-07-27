@@ -8,6 +8,6 @@ Inspiration for this project was taken from [this project](https://eugenkiss.git
 - [x] Temperature Converter
 - [x] Flight Booker
 - [x] Timer
-- [ ] CRUD
-- [ ] Circle Drawer
+- [x] CRUD
+- [x] Circle Drawer
 - [ ] Cells

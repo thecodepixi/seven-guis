@@ -92,10 +92,6 @@ const CircleDrawer = () => {
   return (
     <div className='box'>
       <p className='box-heading'>Circle Drawer</p>
-      <div id='circle-buttons'>
-        <button onClick={undo}>Undo</button>
-        <button onClick={redo}>Redo</button>
-      </div>
       <div id='circle-canvas' ref={canvas} onClick={drawCircle}>
         {showModal ? (
           <SizeModal
@@ -105,6 +101,10 @@ const CircleDrawer = () => {
             circle={currentCircle}
           />
         ) : null}
+      </div>
+      <div id='circle-buttons'>
+        <button onClick={undo}>Undo</button>
+        <button onClick={redo}>Redo</button>
       </div>
     </div>
   );
