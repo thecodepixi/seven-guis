@@ -16,8 +16,8 @@ const SizeModal = React.forwardRef((props, modal) => {
       onClick={props.modalClicks}
       ref={modal}
       style={{
-        top: props.coords[1] + 'px',
-        left: props.coords[0] + 'px',
+        top: props.coords[1] + 10 + 'px',
+        left: props.coords[0] + 10 + 'px',
       }}
     >
       <p>Adjust Diameter</p>
@@ -87,8 +87,8 @@ const CircleDrawer = () => {
 
       let circ = document.createElement('div');
       circ.className = 'circ';
-      circ.style.left = x + 'px';
-      circ.style.top = y + 'px';
+      circ.style.left = x - 10 + 'px';
+      circ.style.top = y - 10 + 'px';
 
       circ.addEventListener('click', (e) => {
         e.stopPropagation();
