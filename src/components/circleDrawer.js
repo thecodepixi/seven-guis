@@ -31,12 +31,19 @@ const CircleDrawer = () => {
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
   const [currentCircle, setCurrentCircle] = useState(null);
+  const [selectedCircle, setSelectedCircle] = useState(null);
   const [previousCircles, setPreviousCircles] = useState([]);
   const [removedCircles, setRemovedCircles] = useState([]);
 
   const canvas = useRef();
   const modal = useRef();
 
+  /* undo method checks for a current circle, then, if we have one:
+   * we remove it from the canvas
+   * add the removed circle to removedCircles
+   * set the currentCircle to the most recent previous
+   * remove the last previous circle from previousCircles since it's now current
+   */
   const undo = () => {
     if (!currentCircle) return;
     currentCircle.remove();
@@ -45,22 +52,31 @@ const CircleDrawer = () => {
     setPreviousCircles(previousCircles.slice(0, -1));
   };
 
+  /* first we check if we have any removedCircles that we can add back then:
+   * we add the last removedCircle back to the canvas
+   * we add whatever the currentCircle was to previousCircles
+   * we make the circle we added back the currentCircle
+   * then we update removedCircles to take away the one we added back
+   */
+
   const redo = () => {
     if (removedCircles.length === 0) return;
     canvas.current.appendChild(removedCircles[removedCircles.length - 1]);
+    setPreviousCircles(previousCircles.concat(currentCircle));
     setCurrentCircle(removedCircles[removedCircles.length - 1]);
     setRemovedCircles(removedCircles.slice(0, -1));
   };
 
   const drawCircle = (e) => {
+    // handle modal stuff
     if (showModal && modal.current.contains(e.target)) {
       return;
     }
-
     if (showModal && !modal.current.contains(e.target)) {
       setShowModal(false);
       return;
     } else {
+      // otherwise deal with creating a circle
       e.stopPropagation();
 
       let x = e.pageX;
@@ -76,13 +92,19 @@ const CircleDrawer = () => {
         setCurrentX(e.pageX);
         setCurrentY(e.pageY);
         setShowModal(true);
-        setCurrentCircle(circ);
+        setSelectedCircle(circ);
       });
 
-      setPreviousCircles(previousCircles.concat(currentCircle));
+      // if we have a current circle, add it to the previousCircles array
+      if (currentCircle) {
+        setPreviousCircles(previousCircles.concat(currentCircle));
+      }
+      // if we've removed any circles with undo, get rid of them, so we can't "redo" them anymore
+      if (removedCircles.length > 0) {
+        setRemovedCircles([]);
+      }
+      // make the created circle the current circle and append it to the canvas
       setCurrentCircle(circ);
-      console.log('Current Circle:', currentCircle);
-      console.log('Previous Circles: ', previousCircles);
       canvas.current.appendChild(circ);
     }
   };
@@ -96,7 +118,7 @@ const CircleDrawer = () => {
             showModal={setShowModal}
             ref={modal}
             coords={[currentX, currentY]}
-            circle={currentCircle}
+            circle={selectedCircle}
           />
         ) : null}
       </div>
