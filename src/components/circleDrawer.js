@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import ReactDOM from 'react-dom';
 
 const SizeModal = React.forwardRef((props, modal) => {
   const [radius, setRadius] = useState(10);
@@ -47,11 +46,10 @@ const CircleDrawer = () => {
   };
 
   const redo = () => {
-    if (!removedCircles) return;
-    let recentlyRemoved = removedCircles[removedCircles.length - 1];
-    // canvas.current.appendChild(replacementCircle);
-    // setCurrentCircle(replacementCircle);
-    // setRemovedCircles(removedCircles.slice(0, -1));
+    if (removedCircles.length === 0) return;
+    canvas.current.appendChild(removedCircles[removedCircles.length - 1]);
+    setCurrentCircle(removedCircles[removedCircles.length - 1]);
+    setRemovedCircles(removedCircles.slice(0, -1));
   };
 
   const drawCircle = (e) => {
