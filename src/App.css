@@ -150,4 +150,5 @@ progress::-moz-progress-bar {
   box-shadow: 5px 5px 10px 5px #777;
   border-radius: 1em;
   text-align: center;
+  z-index: 1;
 }

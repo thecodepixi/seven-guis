@@ -92,8 +92,8 @@ const CircleDrawer = () => {
 
       circ.addEventListener('click', (e) => {
         e.stopPropagation();
-        setCurrentX(e.clientX - canvasBounds.left);
-        setCurrentY(e.clientY - canvasBounds.top);
+        setCurrentX(e.pageX);
+        setCurrentY(e.pageY);
         setShowModal(true);
         setSelectedCircle(circ);
       });
@@ -116,17 +116,16 @@ const CircleDrawer = () => {
   return (
     <div className='box'>
       <p className='box-heading'>Circle Drawer</p>
-      <div id='circle-canvas' ref={canvas} onClick={drawCircle}>
-        {showModal ? (
-          <SizeModal
-            showModal={setShowModal}
-            ref={modal}
-            coords={[currentX, currentY]}
-            circle={selectedCircle}
-            canvas={canvas.current}
-          />
-        ) : null}
-      </div>
+      {showModal ? (
+        <SizeModal
+          showModal={setShowModal}
+          ref={modal}
+          coords={[currentX, currentY]}
+          circle={selectedCircle}
+          canvas={canvas.current}
+        />
+      ) : null}
+      <div id='circle-canvas' ref={canvas} onClick={drawCircle}></div>
       <div id='circle-buttons'>
         <button onClick={undo}>Undo</button>
         <button onClick={redo}>Redo</button>
